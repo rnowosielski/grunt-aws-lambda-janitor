@@ -1,0 +1,36 @@
+{
+  "name": "grunt-aws-lambda-janitor",
+  "version": "1.0.0",
+  "description": "Grunt task that keeps AWS Lambda versions in check",
+  "main": "tasks/lambda_versions_clean.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rnowosielski/grunt-aws-lambda-janitor.git"
+  },
+  "keywords": [
+    "lambda",
+    "aws",
+    "versions",
+    "clean",
+    "janitor",
+    "deployment"
+  ],
+  "author": "Rafał Nowosielski",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/rnowosielski/grunt-aws-lambda-janitor/issues"
+  },
+  "files": [
+    "tasks"
+  ],
+  "homepage": "https://github.com/rnowosielski/grunt-aws-lambda-janitor#readme",
+  "dependencies": {
+    "async": "^2.1.5",
+    "aws-sdk": "^2.23.0",
+    "grunt": "^1.0.1",
+    "grunt-contrib-jshint": "^1.1.0"
+  }
+}
