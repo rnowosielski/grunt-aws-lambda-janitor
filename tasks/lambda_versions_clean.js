@@ -56,7 +56,6 @@ module.exports = function (grunt) {
     Promise.all([getAliases(options.lambdaFunctionName), getVersions(options.lambdaFunctionName)]).then(
       (res) => {
         return res[1].filter((version) => !res[0][version]).map((version) => {
-          console.log(version);
           return new Promise((resolve, reject) => {
             var params = {
               FunctionName: options.lambdaFunctionName,
