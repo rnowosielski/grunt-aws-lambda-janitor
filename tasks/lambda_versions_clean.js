@@ -49,11 +49,11 @@ let getVersions = (functionName) => {
 
 module.exports = function (grunt) {
 
-  function lambda_versions_clean_for(options, done) {
+  function lambda_versions_clean_for(options) {
     console.log("Cleaning versions of lambda " + options.lambdaFunctionName + " that are not assigned to any aliases");
     lambda = new AWS.Lambda({ region: options.region });
 
-    Promise.all([getAliases(options.lambdaFunctionName), getVersions(options.lambdaFunctionName)]).then(
+    return Promise.all([getAliases(options.lambdaFunctionName), getVersions(options.lambdaFunctionName)]).then(
       (res) => {
         return res[1].filter((version) => !res[0][version]).map((version) => {
           return new Promise((resolve, reject) => {
@@ -76,17 +76,16 @@ module.exports = function (grunt) {
         })
       }).then((promises) => Promise.all(promises).then(() => {
       console.log("Finished cleaning " + options.lambdaFunctionName + " unassigned versions");
-      done();
-    }))
+    })).catch((err) => console.log(err.message));
   }
 
   grunt.registerMultiTask('lambda_versions_clean', 'Clean versions that are not assigned to any alias', function () {
     var options = this.options({
-      lambdaFunctionName: null,
-      region: "eu-west-1"
+       lambdaFunctionName: null,
+       region: "eu-west-1"
     });
-    var done = this.async();
-    lambda_versions_clean_for(options, done);
+    let done = this.async();
+    lambda_versions_clean_for(options).then(() => done())
   });
 
 };

@@ -12,7 +12,12 @@ module.exports = function (grunt) {
     lambda_versions_clean: {
       test: {
         options: {
-          lambdaFunctionName: "SomeLambda"
+          lambdaFunctionName: "SomeLambda1"
+        }
+      },
+      test2: {
+        options: {
+          lambdaFunctionName: "SomeLambda2"
         }
       }
     }
