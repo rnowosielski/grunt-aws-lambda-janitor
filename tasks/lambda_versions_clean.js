@@ -64,8 +64,8 @@ module.exports = function (grunt) {
             console.log("Cleaning version " + version);
             lambda.deleteFunction(params, function (err, data) {
               if (err) {
-                console.log("Failed to clean version " + version);
-                reject(err, err.stack);
+                console.log("Failed to clean version " + version + ". " + err.message);
+                resolve(err);
               }
               else {
                 console.log("Cleaned version " + version);
@@ -81,11 +81,11 @@ module.exports = function (grunt) {
 
   grunt.registerMultiTask('lambda_versions_clean', 'Clean versions that are not assigned to any alias', function () {
     var options = this.options({
-       lambdaFunctionName: null,
-       region: "eu-west-1"
+      lambdaFunctionName: null,
+      region: "eu-west-1"
     });
     let done = this.async();
-    lambda_versions_clean_for(options).then(() => done())
+    lambda_versions_clean_for(options).then(() => done()).catch(done)
   });
 
 };
