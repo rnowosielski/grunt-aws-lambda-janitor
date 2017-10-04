@@ -1,6 +1,6 @@
 {
   "name": "grunt-aws-lambda-janitor",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Grunt task that keeps AWS Lambda versions in check",
   "main": "tasks/lambda_versions_clean.js",
   "scripts": {
